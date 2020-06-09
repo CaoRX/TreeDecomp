@@ -48,6 +48,8 @@ public:
         }
         active.erase(actLoc);
         unactive.insert(x);
+
+        cout << x << " is made unactive" << endl;
     }
 
     void pushNode(TDNode *child) {
@@ -83,6 +85,23 @@ public:
         }
         cout << endl;
     }
+
+    void dfs(vector<int> &res) {
+        cout << "dfs at active = ";
+        for (set<int>::iterator p = active.begin(); p != active.end(); ++p) {
+            cout << (*p) << ' ';
+        }
+        cout << ", ";
+        cout << "unactive = ";
+        for (set<int>::iterator p = unactive.begin(); p != unactive.end(); ++p) {
+            cout << (*p) << ' ';
+        }
+        cout << endl;
+        for (int i = 0; i < childs.size(); ++i) {
+            childs[i]->dfs(res);
+        }
+        res.insert(res.end(), unactive.begin(), unactive.end());
+    }
 };
 
 class TreeDecomposition {
@@ -91,8 +110,9 @@ public:
     vector<TDNode *> tNodes;
     int width;
     int n;
+    bool onlyWidth;
 
-    TreeDecomposition(UndirectedGraph *g, bool onlyWidth = false) {
+    TreeDecomposition(UndirectedGraph *g, bool _onlyWidth = false): onlyWidth(_onlyWidth) {
         n = g->n;
         vNodes = vector<TDNode *>(n);
         for (int i = 0; i < n; ++i) {

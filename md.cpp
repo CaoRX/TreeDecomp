@@ -12,7 +12,7 @@ using namespace std;
 
 int main() {
     int n = 500;
-    int m = 200;
+    int m = 1000;
     srand((unsigned)time(NULL));
 
     cout << n << ' ' << m << endl;
@@ -28,6 +28,7 @@ int main() {
         seq[i] = i;
     }
     random_shuffle(seq.begin(), seq.end());
+    cout << n << endl;
     for (int i = 0; i < n; ++i) {
         cout << seq[i] << ' ';
     }

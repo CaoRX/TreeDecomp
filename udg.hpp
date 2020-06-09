@@ -58,6 +58,10 @@ public:
         unionSetInit();
     }
 
+    void resetTDStatus() {
+        unionSetInit();
+    }
+
     void addEdge(int u, int v) {
         e.push_back(Edge(u, v, h[u]));
         h[u] = edgeN++;
